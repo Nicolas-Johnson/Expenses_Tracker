@@ -1,4 +1,4 @@
-export const history = 'History';
+import { history } from '../Actions/Actions_Type';
 
 const INITAL_STATE = {
     HISTORY: [],
