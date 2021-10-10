@@ -1,5 +1,4 @@
-import income from './Actions_Type';
-import expense from './Actions_Type';
+import { income, expense } from '../Actions/Actions_Type';
 
 const INITAL_STATE = {
   INCOMES: [],

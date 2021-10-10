@@ -1,4 +1,7 @@
 import React from "react";
+import PropType from 'prop-types';
+import { connect } from 'react-redux';
+import * as allActions from '../Redux/Actions/index';
 
 class AddTransaction extends React.Component{
   constructor() {
@@ -21,6 +24,29 @@ class AddTransaction extends React.Component{
     }
     return this.setState({[name]: value});
   }
+
+  handleAddTransaction = () => {
+    const { title, amount, entry } = this.state;
+    const { addHystory, addIncome, addExpense } = this.props;
+    const transaction = {
+      [title]: amount,
+    }
+    const history = {
+      title: title,
+      infos: {
+        amount,
+        entry,
+      }
+    }
+    if(entry === 'income') {
+      addHystory(history);
+      addIncome(transaction);
+    } else {
+      addHystory(history);
+      addExpense(transaction);
+    }
+  }
+
   render() {
     const { title, amount } = this.state;
     return(
@@ -37,10 +63,23 @@ class AddTransaction extends React.Component{
               <input name="amount" type="number" defaultValue={ amount } onChange={ this.handleChange } />
             </label>
         </form>
+        <button type="button" onClick={ this.handleAddTransaction }>Add Transaction</button>
         </div>
       </div>
     );
   }
 }
 
-export default AddTransaction;
+AddTransaction.propType = {
+  addHystory: PropType.func.isRequired,
+  addIncome: PropType.func.isRequired,
+  addExpense: PropType.func.isRequired,
+}
+
+const mapDispathToProps = (dispatch) => ({
+  addHystory: (payload) => dispatch(allActions.addHistory(payload)),
+  addIncome: (payload) => dispatch(allActions.addIncome(payload)),
+  addExpense: (payload) => dispatch(allActions.addExpense(payload)),
+})
+
+export default connect(null, mapDispathToProps)(AddTransaction);
