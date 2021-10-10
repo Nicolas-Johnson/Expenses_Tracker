@@ -4,7 +4,7 @@ class AddTransaction extends React.Component{
   render() {
     return(
       <div>
-        <h1>Add New Transaction</h1>
+        <h2>Add New Transaction</h2>
       </div>
     );
   }
