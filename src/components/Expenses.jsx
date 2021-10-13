@@ -5,7 +5,7 @@ class Expenses extends React.Component{
     const { expense } = this.props;
     return(
       <div>
-        <h3>Expenses</h3>
+        <h3>Expense</h3>
         <p>R${ expense }</p>
       </div>
     );

@@ -8,7 +8,7 @@ class AddTransaction extends React.Component{
     super();
     this.state = {
       title: '',
-      amount: 0,
+      amount: '',
       entry: '',
     }
   }
@@ -29,8 +29,8 @@ class AddTransaction extends React.Component{
     const { title, amount, entry } = this.state;
     const { addHystory, addIncome, addExpense } = this.props;
     const transaction = {
-      [title]: amount,
-    }
+      title, amount,
+    }    
     const history = {
       title: title,
       infos: {
@@ -39,9 +39,11 @@ class AddTransaction extends React.Component{
       }
     }
     if(entry === 'income') {
+      this.setState({title: '', amount: '', entry: ''})
       addHystory(history);
       addIncome(transaction);
     } else {
+      this.setState({title: '', amount: '', entry: ''})
       addHystory(history);
       addExpense(transaction);
     }
