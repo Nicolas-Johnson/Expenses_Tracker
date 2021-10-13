@@ -1,13 +1,16 @@
 import React from "react";
+import { useSelector } from 'react-redux';
+import ItemHistory from "./itemHistory";
 
-class History extends React.Component{
-  render() {
-    return(
+export default function History() {
+  const history = useSelector(state => state.ADD_HISTORY.HISTORY);
+
+  return(
+    <div>
+      <h2>History</h2>
       <div>
-        <h1>History</h1>
+        {history.map((item, index) => <ItemHistory key={index} itemList={ item } />)}
       </div>
-    );
-  }
-}
-
-export default History;
+    </div>
+  );
+};
