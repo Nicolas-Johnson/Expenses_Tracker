@@ -8,7 +8,7 @@ class AddTransaction extends React.Component{
     super();
     this.state = {
       title: '',
-      amount: '',
+      amount: 0,
       entry: '',
     }
   }
